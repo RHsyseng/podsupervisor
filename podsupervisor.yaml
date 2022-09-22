@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: OpenShiftPodSupervisor
+spec:
+  parallelism: 1    
+  completions: 1    
+  activeDeadlineSeconds: 1800 
+  backoffLimit: 6   
+  template:         
+    metadata:
+      name: OpenShiftPodSupervisor
+    spec:
+      containers:
+      - name: OpenShiftPodSupervisor
+        image: openshift/origin-cli
+        command: ["bash",  "", "-wle", "print bpi(2000)"]
+      restartPolicy: OnFailure    
+
