@@ -2,3 +2,4 @@ data/*
 etc/*
 usr/*
 openshift-clients.tar
+logmein.sh
