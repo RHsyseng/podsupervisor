@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: OpenShiftPodSupervisor
+  name: openshiftpodsupervisor
 spec:
   parallelism: 1    
   completions: 1    
@@ -9,11 +9,11 @@ spec:
   backoffLimit: 6   
   template:         
     metadata:
-      name: OpenShiftPodSupervisor
+      name: openshift-podsupervisor
     spec:
       containers:
-      - name: OpenShiftPodSupervisor
-        image: openshift/origin-cli
-        command: ["bash",  "", "-wle", "print bpi(2000)"]
+      - name: podsupervisor
+        image: podsupervisor
+        command: ["bash",  "podsupervisor.sh"]
       restartPolicy: OnFailure    
 
