@@ -1,4 +1,5 @@
 BUILDNUMBER=`./bin/updatebuildno.sh`
+echo $BUILDNUMBER
 rpm -ql openshift-clients | tar cf openshift-clients.tar -T -
 tar xf openshift-clients.tar
 rm openshift-clients.tar

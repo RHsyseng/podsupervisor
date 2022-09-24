@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: podsupervisor
-        image: podsupervisor:6
+        image: podsupervisor:latest
         command: ["bash",  "podsupervisor.sh"]
       restartPolicy: OnFailure    
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-oc get pod --all-namespaces -o wide | tail -n +2  >  data/pods.data
-input="/root/data/pods.data"
+oc get pod --all-namespaces -o wide | tail -n +2  >  /tmp/pods.data
+input="/tmp/pods.data"
 while IFS= read -r line
 #Example data
 #testapp                                            httpd-ex-1-build                                         0/1     Completed   0          19h     10.128.2.107    worker-1          <none>           <none>

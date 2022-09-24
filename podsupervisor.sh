@@ -1,7 +1,9 @@
 #!/bin/bash
 pwd
-oc get nodes |  tail -n +2  >  /root/data/nodes.data
-input="/root/data/nodes.data"
+whoami
+echo $HOME
+oc get nodes |  tail -n +2  >  /tmp/nodes.data
+input="/tmp/nodes.data"
 while IFS= read -r line
 #Example data
 #control-plane-0   Ready    master   27h   v1.20.10+bbbc079
