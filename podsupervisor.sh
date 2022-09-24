@@ -1,6 +1,7 @@
 #!/bin/bash
-oc get nodes |  tail -n +2  >  data/nodes.data
-input="data/nodes.data"
+pwd
+oc get nodes |  tail -n +2  >  /root/data/nodes.data
+input="/root/data/nodes.data"
 while IFS= read -r line
 #Example data
 #control-plane-0   Ready    master   27h   v1.20.10+bbbc079

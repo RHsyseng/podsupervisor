@@ -3,7 +3,7 @@ USER root
 COPY etc /etc
 COPY usr /usr
 RUN mkdir /root/.kube
-RUN mkdir /data
+RUN mkdir /root/data
 COPY . .
 COPY .kube/config /root/.kube
 
