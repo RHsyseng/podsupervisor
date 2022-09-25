@@ -1,4 +1,5 @@
 #!/bin/bash
+rm /tmp/pods.data
 oc get pod --all-namespaces -o wide | tail -n +2  >  /tmp/pods.data
 input="/tmp/pods.data"
 while IFS= read -r line
@@ -13,7 +14,8 @@ do
     if [[ "$namespace" != *$ocpstr* ]]; then
          if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up $nodename/$namespace/$podname"
-            oc delete po/$podname
+            logger "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
+            oc delete po/$podname --namespace $namespace
            fi
        fi
 done < "$input"
