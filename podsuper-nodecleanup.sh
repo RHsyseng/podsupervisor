@@ -14,7 +14,7 @@ do
     if [[ "$namespace" != *$ocpstr* ]]; then
          if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up $nodename/$namespace/$podname"
-            logger "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
+            echo "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted" > /dev/log
             oc delete po/$podname --namespace $namespace
            fi
        fi

@@ -1,5 +1,11 @@
+x.out
+test.sh
 data/*
 etc/*
 usr/*
+lib/*
+lib64/*
+var/*
+sbin/*
 openshift-clients.tar
 logmein.sh
