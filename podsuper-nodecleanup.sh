@@ -13,18 +13,14 @@ do
     nodename=`echo $line | cut -d' ' -f8`
     ocpstr='openshift'
     if [[ "$namespace" == "openshift-dns" ]]; then
-         if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up  $nodename/$namespace/$podname"
             ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
             oc delete po/$podname --namespace $namespace
-           fi
         fi
     if [[ "$namespace" != *$ocpstr* ]]; then
-         if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up $nodename/$namespace/$podname"
             ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
             oc delete po/$podname --namespace $namespace
-           fi
        fi
 done < "$input"
 
