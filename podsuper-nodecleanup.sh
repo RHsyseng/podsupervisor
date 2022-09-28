@@ -15,14 +15,14 @@ do
     if [[ "$namespace" == "openshift-dns" ]]; then
          if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up  $nodename/$namespace/$podname"
-            echo "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted" > /dev/log
+            ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
             oc delete po/$podname --namespace $namespace
            fi
         fi
     if [[ "$namespace" != *$ocpstr* ]]; then
          if [[ "$nodename" == $1 ]]; then
             echo "Cleaning up $nodename/$namespace/$podname"
-            echo "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted" > /dev/log
+            ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
             oc delete po/$podname --namespace $namespace
            fi
        fi

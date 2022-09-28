@@ -2,6 +2,7 @@
 pwd
 whoami
 echo $HOME
+mkdir -p /tmp/nodestate
 for i in {1..12}; do
   oc get nodes |  tail -n +2  >  /tmp/nodes.data
   input="/tmp/nodes.data"
@@ -14,10 +15,20 @@ for i in {1..12}; do
     nodename=`echo $line | cut -d' ' -f1`
     nodestate=`echo $line | cut -d' ' -f2`
     readystr='Ready'
-    if [[ "$nodestate" != "$readystr" ]]; then
+    #If prev node state does not exist assume it was ready
+    if [ ! -f /tmp/nodestate/$nodename ]
+      then
+       echo $readystr > /tmp/nodestate/$nodename
+       fi
+    prevstate=`cat /tmp/nodestate/$nodename`
+    if [[ "$prevstate" != "$readystr" ]]; then
+      if [[ "$nodestate" != "$readystr" ]]; then
             echo "Cleaning up $nodename"
             ./podsuper-nodecleanup.sh $nodename
-       fi
+            fi
+         fi
+    # Save state so can check for flapping
+    echo $nodestate > /tmp/nodestate/$nodename
   done < "$input"
   sleep 5
 done

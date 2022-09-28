@@ -5,4 +5,5 @@
 ![Intro](doc/podsupervisor/Slide5.jpeg)
 ![Intro](doc/podsupervisor/Slide6.jpeg)
 ![Intro](doc/podsupervisor/Slide7.jpeg)
+![Intro](doc/podsupervisor/Slide8.jpeg)
 
