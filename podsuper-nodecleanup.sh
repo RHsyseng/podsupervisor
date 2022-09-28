@@ -1,6 +1,6 @@
 #!/bin/bash
 rm /tmp/pods.data
-oc get pod --all-namespaces -o wide | tail -n +2  >  /tmp/pods.data
+oc get pod --all-namespaces -o wide --field-selector spec.nodeName=$1 | tail -n +2  >  /tmp/pods.data
 input="/tmp/pods.data"
 while IFS= read -r line
 #Example data
