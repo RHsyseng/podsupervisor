@@ -9,3 +9,4 @@ var/*
 sbin/*
 openshift-clients.tar
 logmein.sh
+.kube

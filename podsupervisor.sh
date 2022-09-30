@@ -9,20 +9,22 @@ for i in {1..12}; do
   while IFS= read -r line
   #Example data
   #control-plane-0   Ready    master   27h   v1.20.10+bbbc079
+  #worker-1          NotReady   worker   8d    v1.20.10+bbbc079
 
   do
     #echo "$line"
     nodename=`echo $line | cut -d' ' -f1`
     nodestate=`echo $line | cut -d' ' -f2`
     readystr='Ready'
+    notreadystr="NotReady"
     #If prev node state does not exist assume it was ready
     if [ ! -f /tmp/nodestate/$nodename ]
       then
        echo $readystr > /tmp/nodestate/$nodename
        fi
     prevstate=`cat /tmp/nodestate/$nodename`
-    if [[ "$prevstate" != "$readystr" ]]; then
-      if [[ "$nodestate" != "$readystr" ]]; then
+    if [[ "$prevstate" == *$notreadystr* ]]; then
+      if [[ "$nodestate" == *$notreadystr* ]]; then
             echo "Cleaning up $nodename"
             ./podsuper-nodecleanup.sh $nodename
             fi
