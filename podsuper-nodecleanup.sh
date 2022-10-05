@@ -17,10 +17,5 @@ do
             ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
             oc delete po/$podname --namespace $namespace
         fi
-    if [[ "$namespace" != *$ocpstr* ]]; then
-            echo "Cleaning up $nodename/$namespace/$podname"
-            ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
-            oc delete po/$podname --namespace $namespace
-       fi
 done < "$input"
 
