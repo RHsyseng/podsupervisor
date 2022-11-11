@@ -14,7 +14,7 @@ do
     ocpstr='openshift'
     if [[ "$namespace" == "openshift-dns" ]]; then
             echo "Cleaning up  $nodename/$namespace/$podname"
-            ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podnam - Deleted"
+            ./bin/sendalert.sh NODENOTREADY "PodSupervisor: Node: $nodename Application: $namespace Pod: $podname - Deleted"
             oc delete po/$podname --namespace $namespace
         fi
 done < "$input"
