@@ -18,4 +18,3 @@ do
             oc delete po/$podname --namespace $namespace
         fi
 done < "$input"
-
